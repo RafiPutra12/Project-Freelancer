@@ -1,0 +1,29 @@
+image: centos:7
+variables:
+  WORK_DIR: "/var/www/html"
+  BRANCH: "master"
+  REPO: http://gitlab.beon.co.id/internal-api/api_share_project.git
+stages:
+  - test
+  - deploy
+
+test:
+  stage: test
+  environment: 
+    name: Test
+    url: "$TST_URL"
+  before_script:
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - mkdir -p ~/.ssh
+  - eval $(ssh-agent -s)
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - ssh-add <(echo "$PRIVATE_KEY")
+    - rm -rf .git
+    - ssh -o StrictHostKeyChecking=no root@"$TST_SERVER" "rm -rf ~/${WORK_DIR}; mkdir ~/${WORK_DIR}; git init; git clone -b ${BRANCH} ${REPO}; cd ${WORK_DIR}; php -S 103.27.207.31:8000 -t ./public"
+  only:
+    - branches
+  except:
+    - master
+    
+    
