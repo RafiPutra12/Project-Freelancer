@@ -1,7 +1,7 @@
-## Deployment Steps
-1. Clone repositori ini 
-2. Run : composer install
-3. Copy file .env.example dan paste dengan nama .env
-4. Run : php artisan key:generate
-5. Setting file .env dengan nama database
-6. Pindah syntax project teman teman dari file lama ke framework yang sudah di clone 
+Saya bersama sepuluh orang mendapatkan kesempatan untuk mengerjakan project dari 
+PT Beon Intermedia Malang yang bernama Freelancer. Freelancer sendiri adalah aplikasi 
+berbasis web yang berfungsi untuk memudahkan freelancer untuk mendapatkan job yang 
+sesuai begitu juga dengan klien untuk mencari jasa dari freelancer. Fitur dari freelancer sendiri 
+adalah pasang jasa baru untuk freelancer, memilih klien yang sesuai, mengajukan penawaran 
+harga dengan freelancer, memonitor detail project oleh klien, chat dengan klien maupun 
+freelancer.
